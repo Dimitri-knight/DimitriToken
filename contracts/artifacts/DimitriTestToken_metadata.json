@@ -231,6 +231,25 @@
 			},
 			{
 				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "bonusAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "BonusAwarded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
 				"inputs": [],
 				"name": "EIP712DomainChanged",
 				"type": "event"
@@ -252,6 +271,25 @@
 					}
 				],
 				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensClaimed",
 				"type": "event"
 			},
 			{
@@ -360,6 +398,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "bonusfaucetAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -405,6 +456,38 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "claimers",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -474,6 +557,43 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getClaimers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "hasClaimed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -1065,11 +1185,11 @@
 			]
 		},
 		"contracts/DimitriTestToken.sol": {
-			"keccak256": "0x45ba21721abe75307c70fceeb491ae8799e46024beaf710d0a33f508aaa87fb8",
+			"keccak256": "0x13cddc83fee66e9d27e79bed871ccb49b6df857ea2512b78aa03f01d2d656e1e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c5c4babcee2069aadf19a4eb37bb7936e52289491db8181304176dd073642843",
-				"dweb:/ipfs/QmfNjhB2RtvTFnY1yC4XRh7ysebjGih22Wif24urU73Exc"
+				"bzz-raw://55ed9376ac144dc7bedec0f66e1eb664959e8a1a6f06b5396e5014996ff81d12",
+				"dweb:/ipfs/QmSqGeDJw3PNusVsyc5ER4ArdKsjSh1AkcJHspAwZDi7NV"
 			]
 		}
 	},

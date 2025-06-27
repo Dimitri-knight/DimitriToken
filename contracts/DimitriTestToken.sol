@@ -6,11 +6,16 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
-    uint256 public faucetAmount = 100 * 1e18; // 100 DIM tokens
-    uint256 public claimCooldown = 1 days;
+    uint256 public faucetAmount = 10 * 1e18; // 10 DIM tokens
+    uint256 public bonusfaucetAmount = 20 * 1e18; // 20 DIM tokens
+    uint256 public claimCount = 0;
     address megaOwner;
 
+    address[] public claimers;
+    mapping(address => bool) public hasClaimed;
+
     mapping(address => uint256) public lastClaimed;
+    uint256 public claimCooldown = 1 days;
 
     constructor() 
         ERC20("DimitriTestToken", "DIM") 
@@ -19,6 +24,9 @@ contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
     {
         megaOwner = msg.sender;
     }
+
+    event TokensClaimed(address indexed user, uint256 amount);
+    event BonusAwarded(address indexed user, uint256 bonusAmount);
 
     // ========== OPTIONAL: Minting ==========
     function mint(address to, uint256 amount) public onlyOwner {
@@ -38,8 +46,23 @@ contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
     // ========== FAUCET ==========
     function claim() external {
         require(block.timestamp - lastClaimed[msg.sender] >= claimCooldown, "Please wait before claiming again");
+        claimCount++;
         lastClaimed[msg.sender] = block.timestamp;
-        _mint(msg.sender, faucetAmount);
+
+        if (!hasClaimed[msg.sender]) {
+            hasClaimed[msg.sender] = true;
+            claimers.push(msg.sender);
+        }
+
+        if (claimCount % 5 == 0) {
+            _mint(msg.sender, faucetAmount+bonusfaucetAmount);
+            emit BonusAwarded(msg.sender, faucetAmount+bonusfaucetAmount);
+        }
+        else 
+        {
+            _mint(msg.sender, faucetAmount);
+            emit TokensClaimed(msg.sender, faucetAmount);
+        }
     }
 
     function timeUntilNextClaim(address user) external view returns (uint256) {
@@ -50,4 +73,15 @@ contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
             return (last + claimCooldown) - block.timestamp;
         }
     }
+
+    function getClaimers() external view onlyOwner returns (address[] memory, uint256[] memory) {
+        uint256[] memory balances = new uint256[](claimers.length);
+
+        for (uint256 i = 0; i < claimers.length; i++) {
+            balances[i] = balanceOf(claimers[i]);
+        }
+
+        return (claimers, balances);
+    }
+
 }
