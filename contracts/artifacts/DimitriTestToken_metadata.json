@@ -1185,11 +1185,11 @@
 			]
 		},
 		"contracts/DimitriTestToken.sol": {
-			"keccak256": "0x13cddc83fee66e9d27e79bed871ccb49b6df857ea2512b78aa03f01d2d656e1e",
+			"keccak256": "0xee23c7b6b5e425f108c54bea87986dc5244abe15b2531862a5b9ac4f1726b0a6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://55ed9376ac144dc7bedec0f66e1eb664959e8a1a6f06b5396e5014996ff81d12",
-				"dweb:/ipfs/QmSqGeDJw3PNusVsyc5ER4ArdKsjSh1AkcJHspAwZDi7NV"
+				"bzz-raw://a08c2abde9d0e1d34dc1935fece5f17675fdf05e7588812a5f458849f5c8e3b9",
+				"dweb:/ipfs/QmUPvtpTpki8qZa9sCnfVBAUHTJYtNNMadzzsoPsHHigSF"
 			]
 		}
 	},

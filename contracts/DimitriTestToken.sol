@@ -6,10 +6,9 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
-    uint256 public faucetAmount = 10 * 1e18; // 10 DIM tokens
-    uint256 public bonusfaucetAmount = 20 * 1e18; // 20 DIM tokens
+    uint256 public faucetAmount = 30 * 1e18; // 30 DIM tokens
+    uint256 public bonusfaucetAmount = 5 * 1e18; // 5 DIM tokens
     uint256 public claimCount = 0;
-    address megaOwner;
 
     address[] public claimers;
     mapping(address => bool) public hasClaimed;
@@ -21,9 +20,7 @@ contract DimitriTestToken is ERC20, ERC20Permit, Ownable {
         ERC20("DimitriTestToken", "DIM") 
         ERC20Permit("DimitriTestToken") 
         Ownable(msg.sender) 
-    {
-        megaOwner = msg.sender;
-    }
+    {}
 
     event TokensClaimed(address indexed user, uint256 amount);
     event BonusAwarded(address indexed user, uint256 bonusAmount);
